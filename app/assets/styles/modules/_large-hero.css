@@ -8,6 +8,9 @@
 	}
 
 	&__text-content {
+
+		/*padding-top: 60px;*/
+		padding-top: 88px;
 		
 		/*color: $doesntexist;*/
 
@@ -22,6 +25,12 @@
 		/*center vertically*/
 		top: 50%;
 		transform: translateY(-50%);
+
+		@mixin atMedium {
+			padding-top: 60px;
+
+		}
+
 	}
 
 
