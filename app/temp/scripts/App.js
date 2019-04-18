@@ -11115,14 +11115,9 @@ var _Modal2 = _interopRequireDefault(_Modal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// simply importing this file will not do anything
-// we need to create a new object that uses this class as a blueprint
-
 var mobileMenu = new _mobileMenu2.default();
 
 // var revealOnScroll = new RevealOnScroll();
-// import in MobileMenu module
-
 new _revealOnScroll2.default((0, _jquery2.default)(".feature-item"), "85%");
 new _revealOnScroll2.default((0, _jquery2.default)(".testimonial"), "60%");
 
@@ -11280,6 +11275,7 @@ var StickyHeader = function () {
 	function StickyHeader() {
 		_classCallCheck(this, StickyHeader);
 
+		this.lazyImages = (0, _jquery2.default)(".lazyload");
 		this.siteHeader = (0, _jquery2.default)(".site-header");
 		this.headerTriggerElement = (0, _jquery2.default)(".large-hero__title");
 		this.createHeaderWaypoint();
@@ -11287,9 +11283,17 @@ var StickyHeader = function () {
 		this.headerLinks = (0, _jquery2.default)(".primary-nav a");
 		this.createPageSectionWaypoints();
 		this.addSmoothScrolling();
+		this.refreshWaypoints();
 	}
 
 	_createClass(StickyHeader, [{
+		key: 'refreshWaypoints',
+		value: function refreshWaypoints() {
+			this.lazyImages.on('load', function () {
+				Waypoint.refreshAll();
+			});
+		}
+	}, {
 		key: 'addSmoothScrolling',
 		value: function addSmoothScrolling() {
 			this.headerLinks.smoothScroll();
